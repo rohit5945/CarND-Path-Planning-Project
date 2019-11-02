@@ -4,7 +4,7 @@ Udacity Self-Driving Car Nanodegree - Path Planning Project
 By-
 Rohit kukreja
 
-![Driving](start/driving.png)
+![Driving](start.png)
 
 # Overview
 
@@ -78,11 +78,13 @@ No changes were made in the cmake configuration. A new file was added [src/splin
 ## Valid trajectories
 
 ### The car is able to drive at least 4.32 miles without incident.
-I ran the simulator for 15 and 20 miles without incidents:
+I ran the simulator for 10,15 and 20 miles without incidents:
 
-![15 miles](images/15_miles.png)
+![10 miles](10miles.png)
 
-![20 miles](images/20_miles.png)
+![15 miles](15miles.png)
+
+![20 miles](20miles.png)
 
 ### The car drives according to the speed limit.
 No speed limit red message was seen.
@@ -125,6 +127,6 @@ Based on the prediction of the situation we are in, this code increases the spee
 ### Trajectory [line 196 to line 300](./src/main.cpp#L196)
 This code does the calculation of the trajectory based on the speed and lane output from the behavior, car coordinates and past path points.
 
-First, the last two points of the previous trajectory (or the car position if there are no previous trajectory, lines 321 to 345) are used in conjunction three points at a far distance (lines 348 to 350) to initialize the spline calculation (line 370 and 371). To make the work less complicated to the spline calculation based on those points, the coordinates are transformed (shift and rotation) to local car coordinates (lines 361 to 367).
+First, the last two points of the previous trajectory (or the car position if there are no previous trajectory) are used in conjunction three points at a far distance (lines 348 to 350) to initialize the spline calculation . To make the work less complicated to the spline calculation based on those points, the coordinates are transformed (shift and rotation) to local car coordinates.
 
-In order to ensure more continuity on the trajectory (in addition to adding the last two point of the pass trajectory to the spline adjustment), the pass trajectory points are copied to the new trajectory (lines 374 to 379). The rest of the points are calculated by evaluating the spline and transforming the output coordinates to not local coordinates (lines 388 to 407). Worth noticing the change in the velocity of the car from line 393 to 398. The speed change is decided on the behavior part of the code, but it is used in that part to increase/decrease speed on every trajectory points instead of doing it for the complete trajectory.
+In order to ensure more continuity on the trajectory (in addition to adding the last two point of the pass trajectory to the spline adjustment), the pass trajectory points are copied to the new trajectory. The rest of the points are calculated by evaluating the spline and transforming the output coordinates to not local coordinates . The speed change is decided on the behavior part of the code, but it is used in that part to increase/decrease speed on every trajectory points instead of doing it for the complete trajectory.
